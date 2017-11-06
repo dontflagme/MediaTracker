@@ -125,4 +125,16 @@ public class MyListActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         media_list_recycler.setLayoutManager(manager);
     }
+
+    public void deleteMediaItem(MediaItem item){
+        for(int i = 0; i < mediaItems.size(); i++){
+            if(mediaItems.get(i).id.equals(item.id)){
+                mediaItems.set(i, item);
+                storageUtil.saveMediaData(mediaItems);
+                updateMediaItems(storageUtil.getMediaDataList());
+
+                break;
+            }
+    }
+    }
 }

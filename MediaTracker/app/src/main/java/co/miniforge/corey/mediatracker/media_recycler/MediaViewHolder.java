@@ -46,6 +46,17 @@ public class MediaViewHolder extends RecyclerView.ViewHolder {
         inflated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                inflated.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+
+                        ((MyListActivity)context).deleteMediaItem(mediaItem);
+                        return true;
+                    }
+                });
+
+
                 //TODO: Create a new activity with this object's data
                 Intent intent = new Intent(context, MediaItemDetailActivity.class);
                 intent.putExtra(MyListActivity.mediaExtra, mediaItem.toJson().toString());
