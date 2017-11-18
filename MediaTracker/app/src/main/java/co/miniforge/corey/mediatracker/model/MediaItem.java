@@ -56,6 +56,12 @@ public class MediaItem {
         switch (value){
             case Generic:
                 break;
+            case TV:
+                return MediaItemType.TV;
+            case Movie:
+                return MediaItemType.Movie;
+            case Youtube:
+                return MediaItemType.Youtube;
         }
 
         return MediaItemType.Generic;
