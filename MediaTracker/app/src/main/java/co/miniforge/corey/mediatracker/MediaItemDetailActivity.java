@@ -1,6 +1,8 @@
 package co.miniforge.corey.mediatracker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,12 +64,43 @@ public class MediaItemDetailActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MyListActivity.class);
                 intent.putExtra(MyListActivity.mediaExtra,  mediaItem.toJson().toString());
-                startActivity(intent);
+
+
+                promptConfirmation(intent);
             }
         });
+
+
 
         //edit texts
         //save button
         //intent
+    }
+
+    public void promptConfirmation(final Intent intent){
+        //https://developer.android.com/guide/topics/ui/dialogs.html#AlertDialog
+        //Make sure to put the code in the activity, the builder requires an activity to be passed in
+        //import android.support.v7.app for the alert dialog
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Save Changes").setMessage("Are you sure you want to save these changes?");
+
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Put the start activity with intent code here
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Do nothing, unless you want this button to go back to
+                // ListActivity without putting an intent extra
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 }

@@ -37,6 +37,14 @@ public class MediaItem {
         }
     }
 
+    public MediaItem(MediaItemType mediaItemType){
+        this.id = Md5IdHelper.idForObject(this);
+        this.title = "defaultTitle";
+        this.description = "defaultDescription";
+        this.url = "defaultUrl";
+    }
+
+
     public MediaItem(){
         this.id = Md5IdHelper.idForObject(this);
         this.title = "defaultTitle";
